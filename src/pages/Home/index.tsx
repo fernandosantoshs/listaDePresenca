@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Card } from "../../components/Card";
 import "./style.css";
 
 export function Home() {
@@ -8,11 +9,6 @@ export function Home() {
     name: string;
     avatar: string;
   };
-
-//   type UserResponse = {
-//     name: string,
-//     avatar: string
-//   }
 
   useEffect(() => {
     fetch('http://api.github.com/users/fernandosantoshs')
@@ -40,9 +36,8 @@ export function Home() {
         <input type="text" placeholder="Digite o nome.." />
 
         <button>Adicionar</button>
-      
 
-      {/* <Card></Card> */}
+      <Card/>
     </div>
   );
 }
