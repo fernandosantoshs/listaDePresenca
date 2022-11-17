@@ -18,7 +18,8 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 ## 💻 Projeto
 
-Um simples app de lista de presença para prática dessas tecnologias
+Um simples app de lista de presença para prática de TS, react com vite, react hooks (useEffect, useState), components e tipagem. 
+O usuário padrão é do meu github(fernandosantoshs), para alterá-lo vá ao arquivo 'src/pages/Home/index.tsx' e mude o usuário que está no fetch().
 
 
 ## Como utilizar?
