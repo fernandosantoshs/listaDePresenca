@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from "react";
-import { Card } from "../../components/Card";
+import { useState, useEffect } from "react";
+import { Card, CardProps } from "../../components/Card";
 import "./style.css";
 
 export function Home() {
   const [user, setUser] = useState({} as User);
+  const [studentName, setStudentName] = useState('')
+  const [students, setStudent] = useState<CardProps[]>([])
 
   type User = {
     name: string;
     avatar: string;
   };
-
+  
   useEffect(() => {
     fetch('http://api.github.com/users/fernandosantoshs')
     .then(response => response.json())
@@ -19,9 +21,23 @@ export function Home() {
         avatar: data.avatar_url
     })
     })
-}
+  })
 
-  )
+  function handleAddStudent() {
+    const newStudent = {
+      name: studentName,
+      time: new Date().toLocaleString('pt-br', {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      })
+    }
+
+    setStudent(previousState => [...previousState, newStudent])
+
+    setStudentName('')
+
+  }
 
   return (
     <div className="container">
@@ -33,11 +49,23 @@ export function Home() {
         </div>
       </header>
 
-        <input type="text" placeholder="Digite o nome.." />
+        <input type="text" 
+        placeholder="Digite o nome.."
+        onChange={event => setStudentName(event.target.value)}
+        value={studentName}
+         />
 
-        <button>Adicionar</button>
+        <button
+        onClick={handleAddStudent}>Adicionar</button>
 
-      <Card/>
+        {
+        students.map( student => 
+          <Card 
+          key={student.time}
+          name={student.name}
+          time={student.time}/>
+        )
+        }
     </div>
   );
 }
